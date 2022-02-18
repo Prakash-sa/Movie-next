@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const MovieCreateForm=(props)=>{
 
-    const [form,setForm]=useState({
+    const [isInitialDataLoaded,setInitialDataLoaded]=useState(false)
+
+    const defaultData={
         name:'',
         description:'',
         rating:'',
@@ -10,7 +12,18 @@ const MovieCreateForm=(props)=>{
         image:'',
         longDesc:'',
         genre:''
-    })
+    }
+
+    const formData=props.initialData?{...props.initialData}:defaultData
+
+    const [form,setForm]=useState(formData)
+
+    // useEffect(()=>{
+    //     if(props.initialData){
+    //         setForm(props.initialData)
+    //         setInitialDataLoaded(true)
+    //     }
+    // },[isInitialDataLoaded])
 
     const handleChange=(event)=>{
         const target=event.target
@@ -45,7 +58,7 @@ const MovieCreateForm=(props)=>{
     }
 
     return (
-        <form className='w-full'>
+        <form className='w-full my-20 mx-10 overflow-hidden'>
             <div className='mb-4'>
                 <label className='block text-gray-700 text-sm font-bold mb-2'> Name</label>
                 <input className="border shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 

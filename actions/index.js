@@ -12,6 +12,9 @@ const CATEGORIES_DATA=[
   {id:'4','name':'fantasy'}
 ]
 
+export const deleteMovies=(id)=>{
+  return axios.delete(`${BASE_URL}/api/v1/movies/${id}`).then(res=>res.data)
+}
 
   export const getCategories=()=>{
 

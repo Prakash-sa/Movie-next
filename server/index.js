@@ -45,6 +45,23 @@ app.prepare().then(()=>{
         })
     })
 
+    server.delete('/api/v1/movies/:id',(req,res)=>{
+        const {id}=req.params
+
+        const movieIndex=moviesData.findIndex((movie)=>movie.id===id)
+
+        moviesData.splice(movieIndex,1)
+
+        const pathToFile=path.join(__dirname,filePath)
+        const stringifiedData=JSON.stringify(moviesData,null,2)
+        fs.writeFile(pathToFile,stringifiedData,(err)=>{
+            if(err){
+                return res.status(422).send(err)
+            }
+            return res.json("Movie has been successfully added!")
+        })
+    })
+
     server.get('*',(req,res)=>{
         return handle(req,res)
     })
