@@ -129,7 +129,9 @@ const MovieCreateForm=(props)=>{
                     <option>Fantasy</option>
                 </select>
             </div>
-            <button type="button" onClick={submitForm} className="inline-block font-normal text-center px-3 py-2 leading-normal text-base rounded cursor-pointer text-white bg-blue-600">Create</button>
+            <button type="button" onClick={submitForm} className="inline-block font-normal text-center px-3 py-2 leading-normal text-base rounded cursor-pointer text-white bg-blue-600">
+                {props.submitButton||'Create'}
+            </button>
         </form>
     )
 }

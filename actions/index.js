@@ -41,6 +41,14 @@ export const getMovies=()=>{
 
 }
 
+
+export const updateMovie=(movie)=>{
+
+  return axios.patch(`${BASE_URL}/api/v1/movies/${movie.id}`,movie).then((res)=>{
+    return res.data
+  })
+}
+
 export const getMoviebyId=(id)=>{
 
   return axios.get(`${BASE_URL}/api/v1/movies/${id}`).then((res)=>{

@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react"
+import Router from "next/router"
 import MovieCreateForm from "../../../components/movieCreateForm"
-import { getMoviebyId } from "../../../actions"
+import { getMoviebyId ,updateMovie} from "../../../actions"
 
 const EditMovie=(props)=>{
+
+    const handleUpdateMovie=(movie)=>{
+        updateMovie(movie).then((updatedMovie)=>{
+            Router.push('/movies/[id]',`/movies/${movie.id}`)
+        })
+    }
 
     // const [movie,setMovie]=useState({
     //     name:'',
@@ -24,7 +31,11 @@ const EditMovie=(props)=>{
     return (
         <div>
             <h1>Edit the movie</h1>
-            <MovieCreateForm initialData={props.movie}/>
+            <MovieCreateForm
+            submitButton='Update' 
+            initialData={props.movie}
+            handleFormSubmit={handleUpdateMovie}
+            />
         </div>
     )
 }
