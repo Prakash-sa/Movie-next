@@ -25,6 +25,7 @@ function MovieList(props) {
                             <h4 className="card-title">
                             <a href="#">{movie.name}</a>
                             </h4>
+                            <div className="m-1">{movie.genre}</div>
                             <p className="card-text">{shorten(movie.description,150)}</p>
                         </div>
                         <div className="card-footer">

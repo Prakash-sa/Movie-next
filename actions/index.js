@@ -6,10 +6,11 @@ const MOVIE_DATA=[]
 
 
 const CATEGORIES_DATA=[
-  {id:'1','name':'drama'},
-  {id:'2','name':'action'},
-  {id:'3','name':'adventure'},
-  {id:'4','name':'fantasy'}
+  {id:'c-0','name':'all'},
+  {id:'c-1','name':'drama'},
+  {id:'c-2','name':'action'},
+  {id:'c-3','name':'adventure'},
+  {id:'c-4','name':'fantasy'}
 ]
 
 export const deleteMovies=(id)=>{

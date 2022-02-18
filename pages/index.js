@@ -2,11 +2,9 @@ import Head from 'next/head'
 import React,{useState,useEffect} from 'react'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Navbar from '../components/navbar'
 import SideMenu from '../components/sideMenu'
 import Carousel from '../components/carousel'
 import MovieList from '../components/movieList'
-import Footer from '../components/footer'
 import { getCategories, getMovies } from '../actions'
 
 
@@ -30,30 +28,48 @@ export default function Home(props) {
   //   fetchData() 
   // })
   
+  
   const {images,categories}=props
+  const [filter,setFilter]=useState('all')
+
+
+  const changeCategory=(category)=>{
+    setFilter(category)
+  }
+  
+  const filterMovies=movies=>{
+    if(filter==='all')return movies
+    return movies.filter((m)=>{
+      return m.genre && m.genre.includes(filter)
+    })
+  }
+
+
   return (
     <div className={styles.container}>
 
       <div className="container py-10">
         <div className="row">
           <div className="col-lg-3">
-            <SideMenu categories={categories}/>
+            <SideMenu
+            activeCategory={filter} 
+            changeCategory={changeCategory} 
+            categories={categories}/>
           </div>
           <div className="col-lg-9">
             <Carousel images={images}/>
+            <h1 className='font-bold m-2'>Displaying {filter} movies</h1>
             <div className="row">
               {props.errorMessage && 
                 <div className='bg-red-500'>
                   {prpos.errorMessage}
                 </div>
               }
-              <MovieList movies={props.movies}/>
+              <MovieList movies={filterMovies(props.movies)||[]}/>
             </div>
           </div>
         </div>
       </div>
-      
-      <Footer/>
 
     </div>
   )

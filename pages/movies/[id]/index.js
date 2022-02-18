@@ -15,6 +15,8 @@ function Movie(props) {
       })
     }
 
+   
+
   return (
     <div className='py-20 m-10'>
       <img src={props.movie.image}></img>

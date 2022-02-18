@@ -1,12 +1,13 @@
 import '../styles/globals.css'
 import Navbar from '../components/navbar'
 import Head from 'next/head'
+import Footer from '../components/footer'
 
 import "../components/modal.css"
 
 function MyApp({ Component, pageProps }) {
   return (
-  <div>
+  <div className='flex flex-col h-screen'>
     <Head>
         <title>Home</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
@@ -15,7 +16,8 @@ function MyApp({ Component, pageProps }) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       </Head>
       <Navbar/>
-      <Component {...pageProps} />
+      <Component className="flex-grow" {...pageProps} />
+      <Footer className="bottom-0"/>
   </div>
   )
 }
